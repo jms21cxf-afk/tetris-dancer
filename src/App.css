@@ -1,0 +1,322 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  gap: 1rem;
+}
+
+.mute-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  border: 2px solid #444;
+  border-radius: 50%;
+  background: rgba(30, 30, 50, 0.9);
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.mute-btn:hover {
+  border-color: #00f0f0;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  letter-spacing: 0.3em;
+  color: #00f0f0;
+  text-shadow: 0 0 20px rgba(0, 240, 240, 0.5);
+}
+
+.subtitle {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+.stage-frame {
+  position: relative;
+  width: min(420px, 92vw);
+  aspect-ratio: 4 / 3;
+  border: 3px solid #333;
+  background: #1a1a2e;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+/* ── 춤 연출 ── */
+.dance-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 70%,
+    rgba(240, 80, 80, 0.25) 0%,
+    rgba(15, 15, 26, 0.55) 60%,
+    rgba(15, 15, 26, 0.75) 100%
+  );
+  animation: dance-overlay-in 0.3s ease forwards;
+}
+
+.dance-overlay-large .dance-scene {
+  transform: scale(1.8);
+}
+
+.dance-overlay-large .dance-stage {
+  width: 100px;
+  height: 10px;
+}
+
+.dance-overlay-large .dance-caption {
+  font-size: clamp(1rem, 5vw, 1.4rem);
+  margin-top: 1rem;
+}
+
+.dance-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dance-stage {
+  width: 72px;
+  height: 8px;
+  background: linear-gradient(180deg, #c4a060 0%, #8b6914 100%);
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  margin-top: -4px;
+}
+
+.dance-caption {
+  margin: 0.25rem 0 0;
+  font-size: clamp(0.75rem, 3vw, 0.95rem);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: #f0d060;
+  text-shadow: 0 0 12px rgba(240, 208, 96, 0.6);
+  animation: dance-caption-pulse 0.5s ease-in-out infinite alternate;
+}
+
+.dancer {
+  position: relative;
+  width: 48px;
+  height: 72px;
+  animation: dancer-bounce 0.35s ease-in-out infinite alternate;
+}
+
+.dancer-head {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+}
+
+.dancer-hair {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 24px;
+  height: 10px;
+  background: #3a2010;
+  border-radius: 4px 4px 0 0;
+}
+
+.dancer-face {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 20px;
+  height: 16px;
+  background: #f5c99a;
+  border-radius: 3px;
+  box-shadow: inset -2px 0 0 #e0a870;
+}
+
+.dancer-body {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 22px;
+}
+
+.dancer-scarf {
+  position: absolute;
+  top: -2px;
+  left: -4px;
+  width: 32px;
+  height: 8px;
+  background: #e03030;
+  border-radius: 2px;
+  animation: dancer-scarf-sway 0.35s ease-in-out infinite alternate;
+}
+
+.dancer-shirt {
+  position: absolute;
+  top: 6px;
+  left: 2px;
+  width: 20px;
+  height: 16px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.dancer-belt {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 24px;
+  height: 4px;
+  background: #e03030;
+}
+
+.dancer-arms {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 12px;
+}
+
+.dancer-arm {
+  position: absolute;
+  top: 0;
+  width: 20px;
+  height: 8px;
+  background: #fff;
+  border-radius: 2px;
+  transform-origin: center top;
+}
+
+.dancer-arm-left {
+  left: 0;
+  animation: dancer-arm-left 0.35s ease-in-out infinite alternate;
+}
+
+.dancer-arm-right {
+  right: 0;
+  animation: dancer-arm-right 0.35s ease-in-out infinite alternate;
+}
+
+.dancer-legs {
+  position: absolute;
+  top: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 28px;
+}
+
+.dancer-leg {
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 24px;
+  background: #2040a0;
+  border-radius: 2px;
+  transform-origin: center top;
+}
+
+.dancer-leg-left {
+  left: 4px;
+  animation: dancer-leg-left 0.35s ease-in-out infinite alternate;
+}
+
+.dancer-leg-right {
+  right: 4px;
+  animation: dancer-leg-right 0.35s ease-in-out infinite alternate;
+}
+
+@keyframes dance-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dancer-bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes dancer-arm-left {
+  from {
+    transform: rotate(-30deg);
+  }
+  to {
+    transform: rotate(40deg);
+  }
+}
+
+@keyframes dancer-arm-right {
+  from {
+    transform: rotate(30deg);
+  }
+  to {
+    transform: rotate(-40deg);
+  }
+}
+
+@keyframes dancer-leg-left {
+  from {
+    transform: rotate(-15deg);
+  }
+  to {
+    transform: rotate(35deg);
+  }
+}
+
+@keyframes dancer-leg-right {
+  from {
+    transform: rotate(15deg);
+  }
+  to {
+    transform: rotate(-35deg);
+  }
+}
+
+@keyframes dancer-scarf-sway {
+  from {
+    transform: rotate(-8deg);
+  }
+  to {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes dance-caption-pulse {
+  from {
+    opacity: 0.75;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
